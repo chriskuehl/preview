@@ -5,9 +5,11 @@ setup(
     name='preview',
     author='Chris Kuehl',
     author_email='ckuehl@ocf.berkeley.edu',
+    version='0.0.1',
     packages=find_packages(),
     install_requires=[
         'flask',
+        'github3.py',
         'gunicorn',
     ],
 )

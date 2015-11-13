@@ -21,7 +21,7 @@ update-requirements:
 	. $(TMP)/bin/activate && \
 		pip install --upgrade pip && \
 		pip install . && \
-		pip freeze | grep -v '^preview==' > requirements.txt || true
+		pip freeze | grep -vE '^(preview==|\-e)' > requirements.txt || true
 
 virtualenv_run: requirements.txt requirements-dev.txt
 	python ./vendor/venv-update -ppython3 virtualenv_run requirements.txt requirements-dev.txt
