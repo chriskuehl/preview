@@ -11,7 +11,7 @@ def status():
     return '200 OK', 200
 
 with app.app_context():
-    import preview.api.webhook  # noqa
+    import preview.webapp.api.webhook  # noqa
 
 
 if __name__ == '__main__':
