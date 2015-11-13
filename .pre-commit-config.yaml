@@ -33,14 +33,7 @@
     -   id: remove-tabs
         exclude: (bootstrap-scss|docs|bootstrap|Makefile|debian/rules)$
         language_version: python2.7
--   repo: https://github.com/pre-commit/mirrors-scss-lint
-    sha: 3eb13b9647543ad4d6a62c8be8a9131e3b99b96a
+-   repo: https://github.com/chriskuehl/travis.rb.git
+    sha: 438c81fd718bf105d11da0e9f32dd4c353c04281
     hooks:
-    -   id: scss-lint
--   repo: local
-    hooks:
-    -   id: no-top-level-header
-        language: pcre
-        name: No Top-Level Headers (Markdown)
-        entry: ^#\s
-        files: \.md$
+    -   id: travis-lint
