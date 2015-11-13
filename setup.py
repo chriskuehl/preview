@@ -12,5 +12,6 @@ setup(
         'flask',
         'github3.py',
         'gunicorn',
+        'requests',
     ],
 )

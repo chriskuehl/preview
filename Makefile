@@ -4,6 +4,7 @@ export PYTHONPATH = $(PWD)
 
 .PHONY: test
 test: virtualenv_run
+	$(BIN)/py.test -v tests/
 	$(BIN)/pre-commit run --all-files
 
 .PHONY: dev
