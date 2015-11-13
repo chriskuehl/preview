@@ -2,11 +2,14 @@
 import hashlib
 import hmac
 
-from flask import current_app
+from flask import Blueprint
 from flask import request
 
 from preview.config import get_config
 from preview.github import create_status
+
+
+webhook = Blueprint('webhook', __name__)
 
 
 def _hmac_matches(msg, signature):
@@ -20,8 +23,8 @@ def _hmac_matches(msg, signature):
     ).hexdigest()
 
 
-@current_app.route('/api/webhook', methods=['POST'])
-def webhook():
+@webhook.route('/api/webhook', methods=['POST'])
+def webhook_view():
     """Handle an incoming GitHub webhook.
 
     Example webhooks:

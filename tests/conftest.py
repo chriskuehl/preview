@@ -57,7 +57,7 @@ def running_webapp(unused_port, mock_sane_config):
         sys.executable,
         '-m', 'gunicorn.app.wsgiapp',
         '-b', '127.0.0.1:' + str(unused_port),
-        'preview.webapp.app:app',
+        'preview.webapp.run:app',
     ))
     prefix = 'http://127.0.0.1:' + str(unused_port)
 

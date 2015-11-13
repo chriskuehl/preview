@@ -3,17 +3,21 @@ PYTHON := $(BIN)/python
 export PYTHONPATH = $(PWD)
 
 .PHONY: test
-test: virtualenv_run install-hooks
-	$(BIN)/py.test -v tests/
+test: virtualenv_run
+	$(BIN)/py.test tests/
 	$(BIN)/pre-commit run --all-files
+
+.PHONY: test-dev
+test-dev: virtualenv_run
+	$(BIN)/py.test -s -v --pdb tests/
 
 .PHONY: dev
 dev: virtualenv_run
-	$(PYTHON) -m preview.webapp.app
+	$(PYTHON) -m preview.webapp.run
 
 .PHONY: worker-dev
 worker-dev: virtualenv_run
-	$(PYTHON) -m preview.worker.app
+	$(PYTHON) -m preview.worker.run
 
 .PHONY: install-hooks
 install-hooks: virtualenv_run

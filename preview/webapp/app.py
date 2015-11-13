@@ -2,17 +2,18 @@
 """Web application."""
 from flask import Flask
 
-app = Flask(__name__)
-app.debug = True  # TODO: determine this some other way
+from preview.webapp.api.webhook import webhook
 
 
-@app.route('/status')
-def status():
-    return '200 OK', 200
+def create_app():
+    """Instantiate the Flask app."""
+    app = Flask(__name__)
+    app.debug = True  # TODO: determine this some other way
 
-with app.app_context():
-    import preview.webapp.api.webhook  # noqa
+    app.register_blueprint(webhook)
 
+    @app.route('/status')
+    def status():
+        return '200 OK', 200
 
-if __name__ == '__main__':
-    app.run(host='127.0.0.1')
+    return app
