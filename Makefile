@@ -8,7 +8,11 @@ test: virtualenv_run
 
 .PHONY: dev
 dev: virtualenv_run
-	$(PYTHON) -m preview.app
+	$(PYTHON) -m preview.webapp
+
+.PHONY: worker-dev
+worker-dev: virtualenv_run
+	$(PYTHON) -m preview.worker
 
 .PHONY: install-hooks
 install-hooks: virtualenv_run

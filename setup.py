@@ -8,6 +8,7 @@ setup(
     version='0.0.1',
     packages=find_packages(),
     install_requires=[
+        'celery[redis]',
         'flask',
         'github3.py',
         'gunicorn',

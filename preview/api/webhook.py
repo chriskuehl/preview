@@ -1,19 +1,20 @@
-"""api views"""
+"""GitHub webhook handler."""
 import hashlib
 import hmac
 
 from flask import current_app
 from flask import request
 
+from preview.config import get_config
 from preview.github import create_status
 
 
-def hmac_matches(msg, signature):
+def _hmac_matches(msg, signature):
     if not signature or not signature.startswith('sha1='):
         return False
 
     return signature[5:] == hmac.new(
-        current_app.github_webhook_secret.encode('ascii'),
+        get_config().github.webhook_secret.encode('ascii'),
         msg=msg,
         digestmod=hashlib.sha1,
     ).hexdigest()
@@ -31,7 +32,7 @@ def webhook():
       * Updated existing pull request:
         https://gist.github.com/anonymous/22f90074414c89d191ca
     """
-    if not hmac_matches(request.data, request.headers.get('X-Hub-Signature')):
+    if not _hmac_matches(request.data, request.headers.get('X-Hub-Signature')):
         return '403 Forbidden', 403
 
     if request.headers['X-Github-Event'] != 'pull_request':

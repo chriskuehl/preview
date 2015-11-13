@@ -1,5 +1,6 @@
 import github3
-from flask import current_app
+
+from preview.config import get_config
 
 
 def login():
@@ -7,9 +8,10 @@ def login():
 
     :return: github3.GitHub object
     """
+    config = get_config()
     return github3.login(
-        username=current_app.github_user,
-        password=current_app.github_password,
+        username=config.github.user,
+        password=config.github.password,
     )
 
 
