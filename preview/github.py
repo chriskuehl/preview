@@ -1,6 +1,10 @@
 import github3
 
+from preview.config import get_celery
 from preview.config import get_config
+
+
+celery = get_celery()
 
 
 def login():
@@ -15,6 +19,7 @@ def login():
     )
 
 
+@celery.task
 def create_status(owner, repo, sha, status, target_url, description):
     """Create a status for a commit.
 

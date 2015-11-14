@@ -14,4 +14,9 @@ setup(
         'gunicorn',
         'requests',
     ],
+    entry_points={
+        'console_scripts': [
+            'preview-worker=preview.worker.run:main',
+        ],
+    },
 )

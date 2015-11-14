@@ -37,7 +37,6 @@ def webhook_view():
       * Updated existing pull request:
         https://gist.github.com/anonymous/22f90074414c89d191ca
     """
-
     event_type = request.headers.get('X-Github-Event')
     signature = request.headers.get('X-Hub-Signature')
 
@@ -60,7 +59,7 @@ def webhook_view():
         head_sha,
     ))
 
-    create_status(
+    create_status.delay(
         head_owner,
         head_repo_name,
         head_sha,

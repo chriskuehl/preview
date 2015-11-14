@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """Web application."""
 from flask import Flask
 

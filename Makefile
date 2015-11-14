@@ -13,11 +13,11 @@ test-dev: virtualenv_run
 
 .PHONY: dev
 dev: virtualenv_run
-	$(PYTHON) -m preview.webapp.run
+	$(PYTHON) -m preview.webapp.run --debug
 
 .PHONY: worker-dev
 worker-dev: virtualenv_run
-	$(PYTHON) -m preview.worker.run
+	$(PYTHON) -m preview.worker.run --debug
 
 .PHONY: install-hooks
 install-hooks: virtualenv_run
@@ -33,4 +33,4 @@ update-requirements:
 		pip freeze | grep -vE '^(preview==|\-e)' > requirements.txt || true
 
 virtualenv_run: requirements.txt requirements-dev.txt
-	python ./vendor/venv-update -ppython3 virtualenv_run requirements.txt requirements-dev.txt
+	./vendor/venv-update -ppython3 virtualenv_run requirements.txt requirements-dev.txt
